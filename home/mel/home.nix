@@ -72,7 +72,6 @@ in
     brave
     tree
     vnstat
-    zen-browser
     nemo
     vesktop
     phinger-cursors
