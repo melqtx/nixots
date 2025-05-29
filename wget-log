@@ -1,0 +1,11 @@
+--2025-05-29 16:51:26--  https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80
+Resolving images.unsplash.com (images.unsplash.com)... 2a04:4e42:42::720, 199.232.22.208
+Connecting to images.unsplash.com (images.unsplash.com)|2a04:4e42:42::720|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1337388 (1.3M) [image/jpeg]
+Saving to: ‘/home/mel/nixos-config/shared/wallpapers/forest.jpg’
+
+         /home/mel   0%[              ]       0  --.-KB/s                       /home/mel/  86%[===========>  ]   1.11M  5.46MB/s               /home/mel/nixos-co 100%[=============>]   1.28M  5.12MB/s    in 0.2s    
+
+2025-05-29 16:51:26 (5.12 MB/s) - ‘/home/mel/nixos-config/shared/wallpapers/forest.jpg’ saved [1337388/1337388]
+
