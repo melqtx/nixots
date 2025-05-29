@@ -13,11 +13,10 @@ in
   # Cursor theme
   home.file.".icons/default".source = "${pkgs.phinger-cursors}/share/icons/phinger-cursors";
   
-  # Wallpapers directory
-  home.file.".wallpapers" = {
-    source = ../../shared/wallpapers;
-    recursive = true;
-  };
+#  home.file.".wallpapers" = {
+#    source = ../../shared/wallpapers;
+#    recursive = true;
+#  };
 
   # GTK theming
   gtk = {
@@ -73,6 +72,7 @@ in
     tree
     vnstat
     nemo
+    code-cursor
     vesktop
     phinger-cursors
     papirus-icon-theme
@@ -90,6 +90,7 @@ in
     fastfetch
     pfetch
     neofetch
+    ripgrep
   ];
 
   # Fonts configuration
