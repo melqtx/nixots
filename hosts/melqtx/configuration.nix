@@ -53,7 +53,7 @@
     dejavu_fonts
     liberation_ttf
   ];
-
+  services.vnstat.enable = true;
   # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
