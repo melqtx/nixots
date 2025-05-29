@@ -68,6 +68,11 @@ in
     pavucontrol
     imv
     mpv
+    zathura
+    brave
+    tree
+    vnstat
+    zen-browser
     nemo
     vesktop
     phinger-cursors
