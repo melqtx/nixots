@@ -81,6 +81,7 @@ in
     obsidian
     obs-studio
     tmux
+    flameshot
     dunst
     vscodium
     neovim
@@ -124,13 +125,6 @@ in
 
   fonts.fontconfig.enable = true;
 
-  programs = {
-    rofi = {
-      enable = true;
-      package = pkgs.rofi-wayland;
-      theme = "Arc-Dark";
-    };
-  };
  programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -146,7 +140,7 @@ in
   };
 
   imports = [
-    #(import ../shared/xresources.nix { inherit colors; })
+    (import ../shared/xresources.nix { inherit colors; })
 
     (import ./conf/ui/hyprland/default.nix { inherit config pkgs lib colors; })
     #(import ./conf/ui/waybar/default.nix { inherit config lib pkgs hyprland colors; })
@@ -159,7 +153,11 @@ in
     (import ./conf/shell/tmux/default.nix { inherit pkgs; })
     (import ./conf/utils/dunst/default.nix { inherit colors pkgs; })
 
-    #(import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
+    (import ./conf/utils/rofi/default.nix { inherit config pkgs colors; })
+    (import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
     (import ./misc/neofetch.nix { inherit config colors; })
+    
+    (import ./conf/browsers/brave/default.nix { inherit pkgs; })
+    (import ./conf/editors/vscopium/default.nix { inherit pkgs colors; })
   ];
 }

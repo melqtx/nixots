@@ -36,8 +36,8 @@ with colors;{
               icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
-            "Bing".metaData.hidden = true;
-            "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
+            "bing".metaData.hidden = true;
+            "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
           };
         };
 
