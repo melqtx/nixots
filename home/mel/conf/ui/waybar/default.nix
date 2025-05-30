@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hyprland, colors, ... }:
+{ config, lib, pkgs, colors, ... }:
 
 {
   programs.waybar =

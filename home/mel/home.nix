@@ -149,7 +149,7 @@ in
     #(import ../shared/xresources.nix { inherit colors; })
 
     (import ./conf/ui/hyprland/default.nix { inherit config pkgs lib colors; })
-    (import ./conf/ui/waybar/default.nix { inherit config pkgs lib colors; })
+    (import ./conf/ui/waybar/default.nix { inherit config lib pkgs colors; })
 
 
     (import ./conf/term/kitty/default.nix { inherit pkgs colors; })
@@ -158,7 +158,7 @@ in
     (import ./conf/shell/tmux/default.nix { inherit pkgs; })
     (import ./conf/utils/dunst/default.nix { inherit colors pkgs; })
 
-    (import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
+    #(import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
 
   ];
 }
