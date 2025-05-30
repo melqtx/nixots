@@ -1,6 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  colors = import ./shared/cols/cat.nix {};
+  colors = import ../shared/cols/cat.nix {};
   walltype = "image";
 in
 {
