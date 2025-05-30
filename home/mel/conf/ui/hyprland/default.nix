@@ -13,9 +13,16 @@ in
     systemd.enable = true;
     
     extraConfig = ''
+
+      env = XCURSOR_THEME,phinger-cursors
+      env = XCURSOR_SIZE,24
+      env = HYPRCURSOR_THEME,phinger-cursors
+      env = HYPRCURSOR_SIZE,24
       $mainMod = SUPER
+      env = XCURSOR_THEME,phinger-cursors
+      env = XCURSOR_SIZE,24
+
       
-      # Monitor setup - adjust for your setup
       monitor=,preferred,auto,1 
       # monitor=HDMI-A-1, 1920x1080, 0x0, 1
        monitor=eDP-1, 1920x1080, 1920x0, 1
@@ -312,6 +319,8 @@ in
       bind = $mainMod SHIFT, R, exec, hyprctl reload
       bind = $mainMod, Escape, exec, wlogout
       bind = $mainMod SHIFT, L, exec, loginctl lock-session
+      exec-once = hyprctl setcursor phinger-cursors 24
+
       
       # Waybar toggle
       bind = $mainMod, O, exec, killall -SIGUSR1 .waybar-wrapped

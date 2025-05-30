@@ -4,24 +4,43 @@ let
   walltype = "image";
 in
 {
-  # Basic user info
   home.username = "mel";
   home.homeDirectory = "/home/mel";
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
-  # Cursor theme
-  home.file.".icons/default".source = "${pkgs.phinger-cursors}/share/icons/phinger-cursors";
-  
-#  home.file.".wallpapers" = {
-#    source = ../../shared/wallpapers;
-#    recursive = true;
-#  };
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
-  # GTK theming
+  home.sessionVariables = {
+    GTK_THEME = "Adwaita:dark";
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+    
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    HYPRCURSOR_SIZE = "24";
+    
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
   gtk = {
     enable = true;
-    gtk3.extraConfig.gtk-decoration-layout = "menu:";
+    gtk3.extraConfig = {
+      gtk-decoration-layout = "menu:";
+      gtk-cursor-theme-name = "Bibata-Modern-Ice";
+      gtk-cursor-theme-size = 24;
+    };
+    gtk4.extraConfig = {
+      gtk-cursor-theme-name = "Bibata-Modern-Ice";
+      gtk-cursor-theme-size = 24;
+    };
     iconTheme = {
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
@@ -32,14 +51,12 @@ in
     };
   };
 
-  # Qt theming
   qt = {
     enable = true;
     platformTheme.name = "gtk";
     style.name = "adwaita-dark";
   };
 
-  # Nixpkgs configuration
   nixpkgs.config = {
     allowUnfree = true;
     allowInsecure = true;
@@ -47,9 +64,7 @@ in
     allowUnfreePredicate = _: true;
   };
 
-  # Essential packages
   home.packages = with pkgs; [
-    # System utilities
     git
     wget
     curl
@@ -60,12 +75,18 @@ in
     slurp
     wl-clipboard
     swww
-    rofi-wayland  # Use rofi-wayland instead of wofi for better compatibility
+    rofi-wayland
     dunst
-    # Development
+    zsh
+    obsidian
+    obs-studio
+    tmux
+    dunst
+    vscodium
     neovim
     pavucontrol
     imv
+    nwg-look
     mpv
     zathura
     brave
@@ -74,52 +95,70 @@ in
     nemo
     code-cursor
     vesktop
-    phinger-cursors
+    fzf
+    zoxide
+    sesh
+    fd
+    bibata-cursors
     papirus-icon-theme
-    gnome-themes-extra  # For Adwaita theme
+    gnome-themes-extra
+    
     font-awesome
     material-design-icons
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
     nerd-fonts.symbols-only
+    
     kitty
     ghostty
+    
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     wireplumber
+    
     fastfetch
     pfetch
     neofetch
     ripgrep
   ];
 
-  # Fonts configuration
   fonts.fontconfig.enable = true;
 
-  # Programs configuration
   programs = {
-    # Configure rofi
     rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
       theme = "Arc-Dark";
     };
   };
-
-  # Environment variables for proper theming
-  home.sessionVariables = {
-    GTK_THEME = "Adwaita:dark";
-    QT_QPA_PLATFORMTHEME = "gtk2";
-    QT_STYLE_OVERRIDE = "adwaita-dark";
+ programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
   };
 
-  # Import configurations
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+  };
+
   imports = [
-    # Colors/theming
     (import ../../shared/xresources.nix { inherit colors; })
-    
-    # UI components
+
     (import ./conf/ui/hyprland/default.nix { inherit config pkgs lib colors; })
     (import ./conf/ui/waybar/default.nix { inherit config pkgs lib colors; })
+
+
+    (import ./conf/term/kitty/default.nix { inherit pkgs colors; })
+    # Shell
+    (import ./conf/shell/zsh/default.nix { inherit config colors pkgs lib; })
+    (import ./conf/shell/tmux/default.nix { inherit pkgs; })
+    (import ./conf/utils/dunst/default.nix { inherit colors pkgs; })
+
+    (import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
+
   ];
 }

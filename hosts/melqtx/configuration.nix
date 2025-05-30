@@ -1,29 +1,22 @@
-
-
-
-
-
-
 # hosts/melqtx/configuration.nix
 { inputs, config, pkgs, lib, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
   ];
-
+  
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  
   # Networking
   networking.hostName = "melqtx";
   networking.networkmanager.enable = true;
-
+  
   # Time zone and locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-
+  
   # Enable the X11 windowing system and Wayland
   services.xserver.enable = true;
   
@@ -42,7 +35,7 @@
     ];
     config.common.default = "*";
   };
-
+  
   # Fonts
   fonts.packages = with pkgs; [
     font-awesome
@@ -53,7 +46,9 @@
     dejavu_fonts
     liberation_ttf
   ];
+  
   services.vnstat.enable = true;
+  
   # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -64,14 +59,14 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
+  
   # Define user account
   users.users.mel = {
     isNormalUser = true;
     description = "mel";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-
+  
   # System packages
   environment.systemPackages = with pkgs; [
     vim
@@ -79,14 +74,21 @@
     firefox
     wget
     curl
+    phinger-cursors
   ];
-
+  
+  # System-wide cursor theme settings
+  environment.variables = {
+    XCURSOR_THEME = "phinger-cursors";
+    XCURSOR_SIZE = "24";
+  };
+  
   # Programs
   programs = {
     # Enable dconf for GTK apps
     dconf.enable = true;
   };
-
+  
   # Services
   services = {
     # Enable dbus
@@ -95,12 +97,12 @@
     # Enable gnome keyring
     gnome.gnome-keyring.enable = true;
   };
-
+  
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  
   system.stateVersion = "24.05";
 }
