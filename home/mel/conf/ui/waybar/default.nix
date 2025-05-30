@@ -119,7 +119,7 @@
           "3" = "dev";
           "4" = "chat";
           "5" = "sys";
-          default = "{id}";
+          default = "misc";
         };
         persistent_workspaces = {
           "1" = [ ];
@@ -144,7 +144,7 @@
       network = {
         format-disconnected = "󰤮 disconnected";
         format-ethernet = "󰒢 {ifname}";
-        format-wifi = "󰖩 {essid}";
+        format-wifi = "󰖩 NetGear";
         interval = 5;
         tooltip = false;
       };

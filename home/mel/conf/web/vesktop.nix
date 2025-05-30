@@ -7,7 +7,7 @@
 }:
 
 {
-  home.file."/home/safri/.config/vesktop/themes/tokyo-night.theme.css".text = ''
+  home.file."/home/mel/.config/vesktop/themes/tokyo-night.theme.css".text = ''
     /**
      * @name Tokyo Night
      * @description Discord Port of Visual Studio Code Theme
@@ -182,7 +182,7 @@
 
   '';
 
-  home.file."/home/safri/.config/vesktop/settings/settings.json".text = ''
+  home.file."/home/mel/.config/vesktop/settings/settings.json".text = ''
     {
         "autoUpdate": true,
         "autoUpdateNotification": true,

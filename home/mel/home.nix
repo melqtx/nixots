@@ -82,7 +82,6 @@ in
   
   imports = [
     ../../modules/pkgs.nix
-    ../../modules/networking.nix
     
     # Other imports
     (import ../shared/xresources.nix { inherit colors; })
