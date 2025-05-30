@@ -90,7 +90,6 @@ in
     nwg-look
     mpv
     zathura
-    brave
     tree
     vnstat
     nemo
@@ -158,6 +157,6 @@ in
     (import ./misc/neofetch.nix { inherit config colors; })
     
     (import ./conf/browsers/brave/default.nix { inherit pkgs; })
-    (import ./conf/editors/vscopium/default.nix { inherit pkgs colors; })
+    (import ./conf/editors/vscodium/default.nix { inherit pkgs colors; })
   ];
 }

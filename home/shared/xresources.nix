@@ -1,23 +1,38 @@
 { colors }:
-{
-  xresources.properties = {
-    "*foreground" = colors.fg;
-    "*background" = colors.bg;
-    "*color0" = colors.black;
-    "*color1" = colors.red;
-    "*color2" = colors.green;
-    "*color3" = colors.yellow;
-    "*color4" = colors.blue;
-    "*color5" = colors.magenta;
-    "*color6" = colors.cyan;
-    "*color7" = colors.white;
-    "*color8" = colors.bright_black;
-    "*color9" = colors.bright_red;
-    "*color10" = colors.bright_green;
-    "*color11" = colors.bright_yellow;
-    "*color12" = colors.bright_blue;
-    "*color13" = colors.bright_magenta;
-    "*color14" = colors.bright_cyan;
-    "*color15" = colors.bright_white;
+
+with colors; {
+  xresources = {
+    path = ".Xresources";
+    extraConfig = ''
+    '';
+    properties = {
+      "st.background" = "#${background}";
+      "st.alt" = "#${mbg}";
+      "st.color0" = "#${color0}";
+      "st.color8" = "#${color8}";
+      "st.color7" = "#${color7}";
+      "st.color15" = "#${color15}";
+      "st.foreground" = "#${foreground}";
+      "st.color1" = "#${color1}";
+      "st.color9" = "#${color9}";
+      "st.color2" = "#${color2}";
+      "st.color10" = "#${color10}";
+      "st.color3" = "#${color3}";
+      "st.color11" = "#${color11}";
+      "st.color4" = "#${color4}";
+      "st.color12" = "#${color12}";
+      "st.color5" = "#${color5}";
+      "st.color13" = "#${color13}";
+      "st.color6" = "#${color6}";
+      "st.color14" = "#${color14}";
+      "st.borderpx" = 32;
+      "dwm.normbgcolor" = "#${darker}";
+      "dwm.normfgcolor" = "#${foreground}";
+      "dwm.normbordercolor" = "#${comment}";
+      "dwm.selbgcolor" = "#${mbg}";
+      "dwm.selfgcolor" = "#${accent}";
+      "dwm.selbordercolor" = "#${accent}";
+      "dwm.urgcolor" = "#${color9}";
+    };
   };
 }

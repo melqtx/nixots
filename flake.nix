@@ -13,15 +13,27 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    # Add NUR here
+    nur = {
+      url = "github:nix-community/NUR";
+    };
   };
   
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, nur, ... }@inputs: {
     nixosConfigurations = {
       melqtx = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; }; 
         modules = [
           ./hosts/melqtx/configuration.nix
+          
+          # Add NUR overlay
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [
+              nur.overlays.default
+            ];
+          })
           
           home-manager.nixosModules.home-manager
           {
