@@ -149,7 +149,8 @@ in
     #(import ../shared/xresources.nix { inherit colors; })
 
     (import ./conf/ui/hyprland/default.nix { inherit config pkgs lib colors; })
-    (import ./conf/ui/waybar/default.nix { inherit config lib pkgs hyprland colors; })
+    #(import ./conf/ui/waybar/default.nix { inherit config lib pkgs hyprland colors; })
+    (import ./conf/ui/waybar/default.nix { inherit config lib pkgs colors; hyprland = inputs.hyprland; })
 
 
     (import ./conf/term/kitty/default.nix { inherit pkgs colors; })
