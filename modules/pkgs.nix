@@ -33,6 +33,7 @@
     nemo
     code-cursor
     vesktop
+    trash-cli
     
     tree
     vnstat
@@ -60,5 +61,76 @@
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     wireplumber
+    syncthing
+    woeusb-ng
+    ntfs3g
+    vim
+    btop
+    pciutils
+    bluetuith
+    ncdu
+    bat
+    lsd
+    android-tools
+    unrar
+    stig
+    nix-output-monitor
+    nh
+    timer
+    tomato-c
+    ffmpeg-full
+    pandoc
+    libreoffice-qt6-still
+    unzip
+    autofs5
+    bluez
+    libnotify
+    acpi
+    dwm
+    polybar
+    tint2
+    xclip
+    xsel
+    maim
+    slop
+    hyprland
+    hyprlock
+    hyprpaper
+    wofi
+    wf-recorder
+    feh
+    sioyek
+    element-desktop
+    alsa-utils
+    alsa-ucm-conf
+    pipewire
+    sof-firmware
+    linux-firmware
+    alsa-firmware
+    firefox-wayland
+    qutebrowser
+    gum
+    cmake
+    gnumake
+    gcc
+    libtool
+    libvterm
+    jre17_minimal
+    nixfmt-rfc-style
+    python3
+    isort
+    shellcheck
+    ispell
+    kotlin
+    ktlint
+    anki
+    aegisub
+    mpc-cli
+    ncmpcpp
+    nicotine-plus
+    obs-cli
+    tenacity
+    lutris
+    sox
   ];
 }

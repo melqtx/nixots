@@ -32,7 +32,7 @@
       less = "less -R";
       cls = "clear";
       svi = "sudo vi";
-      cd.. = "cd ..";
+      "cd.." = "cd ..";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";

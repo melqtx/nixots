@@ -97,5 +97,6 @@ in
     (import ./misc/neofetch.nix { inherit config colors; })
     (import ./conf/browsers/brave/default.nix { inherit pkgs; })
     (import ./conf/editors/vscodium/default.nix { inherit pkgs colors; })
+    (import ./conf/web/vesktop.nix)
   ];
 }
