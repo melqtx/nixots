@@ -27,6 +27,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = { inherit inputs; hyprland = inputs.hyprland; }; 
             home-manager.users.mel = import ./home/mel/home.nix;
           }
