@@ -195,9 +195,9 @@ in
       # Window state controls
       bind = $mainMod, W, exec, hyprctl --batch "dispatch togglefloating; dispatch resizeactive exact 95% 95%; dispatch centerwindow"
       bind = $mainMod, G, togglegroup
-      bind = Shift, F11, fullscreen
+      bind = $mainMod shift F  fullscreen
       bind = $mainMod, L, exec, loginctl lock-session
-      bind = $mainMod SHIFT, F, pin
+      bind = $mainMod Shift, P, pin
       bind = Control Alt, Delete, exec, wlogout
       bind = Alt_R, Control_R, exec, killall waybar || waybar
       
