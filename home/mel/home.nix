@@ -1,6 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  colors = import ../shared/cols/cat.nix {};
+  colors = import ../shared/cols/horizon.nix {};
   walltype = "image";
 in
 {
@@ -146,6 +146,7 @@ in
     (import ./conf/ui/waybar/default.nix { inherit config lib pkgs colors; hyprland = inputs.hyprland; })
 
 
+    (import ./conf/term/ghostty/default.nix { inherit pkgs colors; })
     (import ./conf/term/kitty/default.nix { inherit pkgs colors; })
     # Shell
     (import ./conf/shell/zsh/default.nix { inherit config colors pkgs lib; })

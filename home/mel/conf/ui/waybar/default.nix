@@ -141,7 +141,7 @@
           format-wifi = "󰤨 ";
         };
         "custom/launcher" = {
-          on-click = "eww open --toggle dash";
+          on-click = "rofi -show drun";
           format = " ";
         };
         "custom/power" = {

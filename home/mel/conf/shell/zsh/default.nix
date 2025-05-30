@@ -14,6 +14,7 @@
       suda = "sudo -E -s";
       sh = "swayhide";
       nix-pkgs = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs";
+      rebuild = "sudo nixos-rebuild switch --flake /home/mel/nixos-config#melqtx";
     };
     history = {
       expireDuplicatesFirst = true;
