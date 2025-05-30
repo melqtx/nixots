@@ -1,9 +1,9 @@
-# home/mel/conf/ui/hyprland/default.nix
 { config, lib, pkgs, colors, ... }:
 
 let
-  # Updated wallpaper path to your actual walls directory
   wall = "~/nixos-config/home/images/walls/${colors.name or "default"}.jpg";
+  #TODO
+  scrPath = "~/.config/hypr/scripts";
 in
 {
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
@@ -13,21 +13,21 @@ in
     systemd.enable = true;
     
     extraConfig = ''
-
       env = XCURSOR_THEME,phinger-cursors
       env = XCURSOR_SIZE,24
       env = HYPRCURSOR_THEME,phinger-cursors
       env = HYPRCURSOR_SIZE,24
       $mainMod = SUPER
-      env = XCURSOR_THEME,phinger-cursors
-      env = XCURSOR_SIZE,24
-
+      
+      $TERMINAL = kitty
+      $EDITOR = code
+      $EXPLORER = nemo
+      $BROWSER = firefox
       
       monitor=,preferred,auto,1 
       # monitor=HDMI-A-1, 1920x1080, 0x0, 1
-       monitor=eDP-1, 1920x1080, 1920x0, 1
+      monitor=eDP-1, 1920x1080, 1920x0, 1
       
-      # Input configuration
       input {
         kb_layout = us
         kb_variant =
@@ -45,7 +45,6 @@ in
         accel_profile = adaptive
       }
       
-      # General window management - reduced gaps for more compact layout
       general {
         gaps_in = 8
         gaps_out = 12
@@ -58,7 +57,6 @@ in
         extend_border_grab_area = 15
       }
       
-      # Dwindle layout settings
       dwindle {
         no_gaps_when_only = true
         force_split = 0 
@@ -71,7 +69,6 @@ in
         smart_resizing = true
       }
       
-      # Master layout settings
       master {
         new_is_master = true
         special_scale_factor = 0.85
@@ -82,7 +79,6 @@ in
         always_center_master = false
       }
       
-      # Visual effects
       decoration {
         active_opacity = 1.0
         inactive_opacity = 0.95
@@ -187,41 +183,151 @@ in
         sensitivity = -0.5
       }
       
-      # Basic window management bindings
-      bind = $mainMod, Return, exec, kitty
-      bind = $mainMod, Q, exec, grim -g "$(slurp)" ~/Pictures/screenshot.png
-      bind = $mainMod SHIFT, Return, exec, kitty --class termfloat
-      bind = $mainMod SHIFT, C, killactive,
-      bind = $mainMod SHIFT, Q, exit,
-      bind = $mainMod SHIFT, Space, togglefloating,
-      bind = $mainMod, F, fullscreen, 1
-      bind = $mainMod SHIFT, F, fullscreen, 0
-      bind = $mainMod, Y, pin
-      bind = $mainMod, P, pseudo,
-      bind = $mainMod, J, togglesplit,
-      bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
+      # ========================================
+      # WINDOW MANAGEMENT KEYBINDS
+      # ========================================
       
-      # Toggle grouped layout
-      bind = $mainMod, K, togglegroup,
-      bind = $mainMod, Tab, changegroupactive, f
-      bind = $mainMod SHIFT, Tab, changegroupactive, b
+      # Close and kill windows
+      bind = $mainMod, Q, killactive
+      bind = Alt, F4, killactive
+      bind = $mainMod, Delete, exit
       
-      # Change gaps dynamically
-      bind = $mainMod SHIFT, G, exec, hyprctl --batch "keyword general:gaps_out 12;keyword general:gaps_in 8"
-      bind = $mainMod, G, exec, hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
-      bind = $mainMod CTRL, G, exec, hyprctl --batch "keyword general:gaps_out 20;keyword general:gaps_in 15"
+      # Window state controls
+      bind = $mainMod, W, exec, hyprctl --batch "dispatch togglefloating; dispatch resizeactive exact 95% 95%; dispatch centerwindow"
+      bind = $mainMod, G, togglegroup
+      bind = Shift, F11, fullscreen
+      bind = $mainMod, L, exec, loginctl lock-session
+      bind = $mainMod SHIFT, F, pin
+      bind = Control Alt, Delete, exec, wlogout
+      bind = Alt_R, Control_R, exec, killall waybar || waybar
       
-      # Move focus with arrow keys and vim-like keys
-      bind = $mainMod, left, movefocus, l
-      bind = $mainMod, right, movefocus, r
-      bind = $mainMod, up, movefocus, u
-      bind = $mainMod, down, movefocus, d
+      # Group Navigation
+      bind = $mainMod Control, H, changegroupactive, b
+      bind = $mainMod Control, L, changegroupactive, f
+      
+      # Focus movement
+      bind = $mainMod, Left, movefocus, l
+      bind = $mainMod, Right, movefocus, r
+      bind = $mainMod, Up, movefocus, u
+      bind = $mainMod, Down, movefocus, d
       bind = $mainMod, h, movefocus, l
       bind = $mainMod, l, movefocus, r
       bind = $mainMod, k, movefocus, u
       bind = $mainMod, j, movefocus, d
+      bind = ALT, Tab, cyclenext
       
-      # Switch workspaces
+      # Resize windows
+      binde = $mainMod Shift, Right, resizeactive, 30 0
+      binde = $mainMod Shift, Left, resizeactive, -30 0
+      binde = $mainMod Shift, Up, resizeactive, 0 -30
+      binde = $mainMod Shift, Down, resizeactive, 0 30
+      binde = $mainMod Shift, l, resizeactive, 30 0
+      binde = $mainMod Shift, h, resizeactive, -30 0
+      binde = $mainMod Shift, k, resizeactive, 0 -30
+      binde = $mainMod Shift, j, resizeactive, 0 30
+      
+      # Move windows within workspace
+      bind = $mainMod Shift Control, left, movewindow, l
+      bind = $mainMod Shift Control, right, movewindow, r
+      bind = $mainMod Shift Control, up, movewindow, u
+      bind = $mainMod Shift Control, down, movewindow, d
+      bind = $mainMod Shift Control, h, movewindow, l
+      bind = $mainMod Shift Control, l, movewindow, r
+      bind = $mainMod Shift Control, k, movewindow, u
+      bind = $mainMod Shift Control, j, movewindow, d
+      
+      # Mouse bindings for moving/resizing
+      bindm = $mainMod, mouse:272, movewindow
+      bindm = $mainMod, mouse:273, resizewindow
+      bindm = $mainMod, Z, movewindow
+      bindm = $mainMod, X, resizewindow
+      
+      # Toggle split
+      bind = $mainMod, J, togglesplit
+      
+      # ========================================
+      # APPLICATION LAUNCHERS
+      # ========================================
+      
+      # Terminal applications
+      bind = $mainMod, T, exec, $TERMINAL
+      bind = $mainMod Alt, T, exec, [float; move 20% 5%; size 60% 60%] $TERMINAL
+      bind = $mainMod, Return, exec, $TERMINAL
+      bind = $mainMod SHIFT, Return, exec, $TERMINAL --class termfloat
+      
+      # Core applications
+      bind = $mainMod, E, exec, $EXPLORER
+      bind = $mainMod, C, exec, $EDITOR
+      bind = $mainMod, B, exec, $BROWSER
+      bind = Control Shift, Escape, exec, htop
+      
+      # Rofi menus
+      bind = $mainMod, A, exec, rofi -show drun
+      bind = $mainMod, TAB, exec, rofi -show window
+      bind = $mainMod, R, exec, rofi -show run
+      bind = $mainMod Shift, E, exec, rofi -show filebrowser
+      bind = $mainMod, slash, exec, rofi -show keys
+      bind = $mainMod, comma, exec, rofi -show emoji
+      bind = $mainMod, period, exec, rofi -show symbols
+      bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
+      bind = $mainMod Shift, V, exec, rofi -show clipboard
+      bind = $mainMod Shift, A, exec, rofi -show
+      
+      # ========================================
+      # HARDWARE CONTROLS
+      # ========================================
+      
+      # Audio controls
+      bind = , F10, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      binde = , F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      binde = , F12, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      bind = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+      binde = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      binde = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      
+      # Media controls
+      bind = , XF86AudioPlay, exec, playerctl play-pause
+      bind = , XF86AudioPause, exec, playerctl play-pause
+      bind = , XF86AudioNext, exec, playerctl next
+      bind = , XF86AudioPrev, exec, playerctl previous
+      
+      # Brightness controls
+      binde = , XF86MonBrightnessUp, exec, brightnessctl set +5%
+      binde = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
+      
+      # ========================================
+      # UTILITIES
+      # ========================================
+      
+      # Keyboard layout toggle (if you need it)
+      bind = $mainMod, K, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next
+      
+      # Screen capture
+      bind = $mainMod Shift, P, exec, hyprpicker -an
+      bind = $mainMod, P, exec, grim -g "$(slurp)" ~/Pictures/screenshot.png
+      bind = $mainMod Control, P, exec, grim -g "$(slurp)" - | wl-copy
+      bind = $mainMod Alt, P, exec, grim ~/Pictures/screenshot.png
+      bind = , Print, exec, grim ~/Pictures/screenshot.png
+      
+      # ========================================
+      # THEMING AND WALLPAPER 
+      # ========================================
+      
+      # Gap controls
+      bind = $mainMod SHIFT, G, exec, hyprctl --batch "keyword general:gaps_out 12;keyword general:gaps_in 8"
+      bind = $mainMod, G, exec, hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
+      bind = $mainMod CTRL, G, exec, hyprctl --batch "keyword general:gaps_out 20;keyword general:gaps_in 15"
+      
+      # System controls
+      bind = $mainMod SHIFT, R, exec, hyprctl reload
+      bind = $mainMod, Escape, exec, wlogout
+      
+      # ========================================
+      # WORKSPACE MANAGEMENT
+      # ========================================
+      
+      # Navigate to workspaces
       bind = $mainMod, 1, workspace, 1
       bind = $mainMod, 2, workspace, 2
       bind = $mainMod, 3, workspace, 3
@@ -232,98 +338,69 @@ in
       bind = $mainMod, 8, workspace, 8
       bind = $mainMod, 9, workspace, 9
       bind = $mainMod, 0, workspace, 10
-      bind = $mainMod, L, workspace, +1
-      bind = $mainMod, H, workspace, -1
+      
+      # Relative workspace navigation
+      bind = $mainMod Control, Right, workspace, r+1
+      bind = $mainMod Control, Left, workspace, r-1
+      bind = $mainMod Control, l, workspace, r+1
+      bind = $mainMod Control, h, workspace, r-1
       bind = $mainMod, period, workspace, e+1
       bind = $mainMod, comma, workspace, e-1
       
-      # Special workspaces (named)
-      bind = $mainMod, Q, workspace, name:QQ
-      bind = $mainMod, T, workspace, name:TG
-      bind = $mainMod, M, workspace, name:Music
-      bind = $mainMod, C, workspace, name:Code
-      bind = $mainMod, B, workspace, name:Browser
+      # Navigate to empty workspace
+      bind = $mainMod Control, Down, workspace, empty
       
-      # Special workspace (scratchpad)
-      bind = $mainMod, minus, movetoworkspace, special
-      bind = $mainMod, equal, togglespecialworkspace
+      # Move window to workspace
+      bind = $mainMod Shift, 1, movetoworkspace, 1
+      bind = $mainMod Shift, 2, movetoworkspace, 2
+      bind = $mainMod Shift, 3, movetoworkspace, 3
+      bind = $mainMod Shift, 4, movetoworkspace, 4
+      bind = $mainMod Shift, 5, movetoworkspace, 5
+      bind = $mainMod Shift, 6, movetoworkspace, 6
+      bind = $mainMod Shift, 7, movetoworkspace, 7
+      bind = $mainMod Shift, 8, movetoworkspace, 8
+      bind = $mainMod Shift, 9, movetoworkspace, 9
+      bind = $mainMod Shift, 0, movetoworkspace, 10
       
-      # Move window in current workspace
-      bind = $mainMod SHIFT, left, movewindow, l
-      bind = $mainMod SHIFT, right, movewindow, r
-      bind = $mainMod SHIFT, up, movewindow, u
-      bind = $mainMod SHIFT, down, movewindow, d
-      bind = $mainMod SHIFT, h, movewindow, l
-      bind = $mainMod SHIFT, l, movewindow, r
-      bind = $mainMod SHIFT, k, movewindow, u
-      bind = $mainMod SHIFT, j, movewindow, d
-      
-      # Move active window to workspace
-      bind = $mainMod CTRL, 1, movetoworkspace, 1
-      bind = $mainMod CTRL, 2, movetoworkspace, 2
-      bind = $mainMod CTRL, 3, movetoworkspace, 3
-      bind = $mainMod CTRL, 4, movetoworkspace, 4
-      bind = $mainMod CTRL, 5, movetoworkspace, 5
-      bind = $mainMod CTRL, 6, movetoworkspace, 6
-      bind = $mainMod CTRL, 7, movetoworkspace, 7
-      bind = $mainMod CTRL, 8, movetoworkspace, 8
-      bind = $mainMod CTRL, 9, movetoworkspace, 9
-      bind = $mainMod CTRL, 0, movetoworkspace, 10
-      bind = $mainMod CTRL, left, movetoworkspace, -1
-      bind = $mainMod CTRL, right, movetoworkspace, +1
-      bind = $mainMod CTRL, h, movetoworkspace, -1
-      bind = $mainMod CTRL, l, movetoworkspace, +1
-      
-      # Move to workspace silently
-      bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1
-      bind = $mainMod SHIFT, 2, movetoworkspacesilent, 2
-      bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3
-      bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4
-      bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5
-      bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6
-      bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
-      bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
-      bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
-      bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
+      # Move window to relative workspace
+      bind = $mainMod Control+Alt, Right, movetoworkspace, r+1
+      bind = $mainMod Control+Alt, Left, movetoworkspace, r-1
+      bind = $mainMod Control+Alt, l, movetoworkspace, r+1
+      bind = $mainMod Control+Alt, h, movetoworkspace, r-1
       
       # Scroll through workspaces with mouse
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
+      
+      # Special workspaces (scratchpad)
+      bind = $mainMod Shift, S, movetoworkspace, special
+      bind = $mainMod Alt, S, movetoworkspacesilent, special
+      bind = $mainMod, S, togglespecialworkspace
+      bind = $mainMod, minus, movetoworkspace, special
+      bind = $mainMod, equal, togglespecialworkspace
+      
+      # Move to workspace silently
+      bind = $mainMod Alt, 1, movetoworkspacesilent, 1
+      bind = $mainMod Alt, 2, movetoworkspacesilent, 2
+      bind = $mainMod Alt, 3, movetoworkspacesilent, 3
+      bind = $mainMod Alt, 4, movetoworkspacesilent, 4
+      bind = $mainMod Alt, 5, movetoworkspacesilent, 5
+      bind = $mainMod Alt, 6, movetoworkspacesilent, 6
+      bind = $mainMod Alt, 7, movetoworkspacesilent, 7
+      bind = $mainMod Alt, 8, movetoworkspacesilent, 8
+      bind = $mainMod Alt, 9, movetoworkspacesilent, 9
+      bind = $mainMod Alt, 0, movetoworkspacesilent, 10
+      
+      # Named workspaces
+      bind = $mainMod, M, workspace, name:Music
+      bind = $mainMod Shift, M, movetoworkspace, name:Music
       
       # Workspace back and forth
       binds {
         workspace_back_and_forth = 1 
         allow_workspace_cycles = 1
       }
-      bind = $mainMod, slash, workspace, previous
-      
-      # Launch applications
-      bind = $mainMod, A, exec, rofi -show drun
-      bind = $mainMod, R, exec, rofi -show run
-      bind = $mainMod, W, exec, rofi -show window
-      bind = $mainMod, E, exec, nemo
-      bind = $mainMod SHIFT, E, exec, kitty -e ranger
-      
-      # Volume, brightness, media controls
-      bind = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-      bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bind = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-      bind = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
-      bind = , XF86MonBrightnessUp, exec, brightnessctl set +5%
-      bind = , XF86AudioPlay, exec, playerctl play-pause
-      bind = , XF86AudioNext, exec, playerctl next
-      bind = , XF86AudioPrev, exec, playerctl previous
-      
-      # System controls
-      bind = $mainMod SHIFT, R, exec, hyprctl reload
-      bind = $mainMod, Escape, exec, wlogout
-      bind = $mainMod SHIFT, L, exec, loginctl lock-session
-      exec-once = hyprctl setcursor phinger-cursors 24
-
-      
-      # Waybar toggle
-      bind = $mainMod, O, exec, killall -SIGUSR1 .waybar-wrapped
+      bind = $mainMod, grave, workspace, previous
       
       # Resize window mode
       bind = ALT, R, submap, resize
@@ -340,19 +417,8 @@ in
       bind = , return, submap, reset
       submap = reset
       
-      # Direct resize bindings
-      bind = CTRL SHIFT, left, resizeactive, -20 0
-      bind = CTRL SHIFT, right, resizeactive, 20 0
-      bind = CTRL SHIFT, up, resizeactive, 0 -20
-      bind = CTRL SHIFT, down, resizeactive, 0 20
-      bind = CTRL SHIFT, h, resizeactive, -20 0
-      bind = CTRL SHIFT, l, resizeactive, 20 0
-      bind = CTRL SHIFT, k, resizeactive, 0 -20
-      bind = CTRL SHIFT, j, resizeactive, 0 20
-      
-      # Mouse bindings
-      bindm = $mainMod, mouse:272, movewindow
-      bindm = $mainMod, mouse:273, resizewindow
+      # Waybar toggle
+      bind = $mainMod, O, exec, killall -SIGUSR1 .waybar-wrapped
       
       # Startup commands
       exec-once = swww init
@@ -361,6 +427,7 @@ in
       exec-once = dunst
       exec-once = wl-paste --type text --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
+      exec-once = hyprctl setcursor phinger-cursors 24
       
       # Window rules
       windowrule = float, title:^(Picture-in-Picture)$

@@ -5,16 +5,13 @@
     ./hardware-configuration.nix
   ];
   
-  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
-  # Networking
   networking.hostName = "melqtx";
   networking.networkmanager.enable = true;
   
-  # Time zone and locale
-  time.timeZone = "America/New_York";
+  time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
   
   # Enable the X11 windowing system and Wayland

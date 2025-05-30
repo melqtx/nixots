@@ -9,18 +9,11 @@ with colors; {
       font-style-bold = "auto";
       font-style-italic = "auto";
       font-style-bold-italic = "auto";
-      font-size = 10
+      font-size = 12;
       font-feature = "-liga"; # disable ligatures equivalent
       
-      # Window settings
-      window-padding-x = 24;
-      window-padding-y = 24;
       confirm-close-surface = false;
       
-      # Font adjustments
-      adjust-cell-height = 20; # 120% equivalent
-      adjust-cell-width = -13; # 87% equivalent
-      adjust-box-thickness = 1;
       
       # Mouse and focus
       mouse-hide-while-typing = false;
@@ -32,11 +25,11 @@ with colors; {
       cursor-style-blink = false;
       
       # Performance
-      sync-to-monitor = false;
+      # sync-to-monitor not available in Ghostty
       
       # Bell/notifications
       desktop-notifications = false;
-      visual-bell = false;
+      # visual-bell not available in Ghostty
       
       # Colors
       background = colors.background;
