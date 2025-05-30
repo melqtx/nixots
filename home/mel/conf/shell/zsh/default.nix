@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    Autosuggestions = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
     shellAliases = {
@@ -20,7 +20,7 @@
       expireDuplicatesFirst = true;
       save = 512;
     };
-    initExtra = ''
+    initContent = ''
       bindkey  "^[[H"   beginning-of-line
       bindkey  "^[[4~"   end-of-line
       bindkey  "^[[3~"  delete-char
