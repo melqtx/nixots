@@ -1,6 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  colors = import ../../shared/cols/forest.nix { };
+  colors = import ./shared/cols/cat.nix {};
   walltype = "image";
 in
 {
@@ -146,7 +146,7 @@ in
   };
 
   imports = [
-    (import ../../shared/xresources.nix { inherit colors; })
+    #(import ../shared/xresources.nix { inherit colors; })
 
     (import ./conf/ui/hyprland/default.nix { inherit config pkgs lib colors; })
     (import ./conf/ui/waybar/default.nix { inherit config pkgs lib colors; })

@@ -127,3 +127,28 @@
       }
     ];
   };
+
+  # Install required dependencies for sesh
+  home.packages = with pkgs; [
+    sesh        # The new Go-based session manager (replaces t-smart-tmux-session-manager)
+    fzf         # Required for interactive session selection
+    zoxide      # Required for smart directory jumping
+    fd          # Better find alternative (used in the fzf bindings)
+  ];
+
+  # Configure zoxide for better directory tracking
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+  };
+
+  # Configure fzf for better fuzzy finding
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+  };
+}
