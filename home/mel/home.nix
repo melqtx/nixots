@@ -160,6 +160,6 @@ in
     (import ./conf/utils/dunst/default.nix { inherit colors pkgs; })
 
     #(import ./conf/browsers/firefox/default.nix { inherit colors pkgs; })
-
+    (import ./misc/neofetch.nix { inherit config colors; })
   ];
 }

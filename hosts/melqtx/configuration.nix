@@ -64,6 +64,7 @@
   users.users.mel = {
     isNormalUser = true;
     description = "mel";
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
   };
   
@@ -88,7 +89,7 @@
     # Enable dconf for GTK apps
     dconf.enable = true;
   };
-  
+  programs.zsh.enable = true;
   # Services
   services = {
     # Enable dbus
