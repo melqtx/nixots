@@ -82,7 +82,6 @@ in
   
   imports = [
     ../../modules/pkgs.nix
-    ../../modules/unstable.pkgs.nix
     ../../modules/networking.nix
     
     # Other imports
