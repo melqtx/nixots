@@ -8,19 +8,19 @@
   
   imports = [
     ../shared/xresources.nix
-    ./conf/ui/hyprland
-    ./conf/ui/waybar
-    ./conf/term/ghostty
-    ./conf/term/kitty
+    ./conf/wm/hyprland
+    ./conf/wm/waybar.nix
+    ./conf/term/ghostty.nix
+    ./conf/term/kitty.nix
     ./conf/shell/zsh
     ./conf/shell/tmux
-    ./conf/utils/dunst
-    ./conf/utils/rofi
+    ./conf/wm/dunst
+    ./conf/wm/rofi
     ./conf/web/firefox.nix
     ./conf/web/brave.nix
     ./conf/web/qutebrowser.nix
     ./conf/web/vesktop.nix
-    ./conf/editors/vscodium
+    ./conf/utils/vscodium
     ./misc/neofetch.nix
     ./conf/shell/yazi/yazi.nix
   ];
