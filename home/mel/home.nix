@@ -9,7 +9,7 @@
   imports = [
     ../shared/xresources.nix
     ./conf/wm/hyprland
-    ./conf/wm/waybar.nix
+    ./conf/wm/waybar
     ./conf/term/ghostty.nix
     ./conf/term/kitty.nix
     ./conf/shell/zsh

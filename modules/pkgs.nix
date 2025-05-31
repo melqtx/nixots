@@ -13,6 +13,7 @@
     rofi-wayland
     dunst
     cool-retro-term
+    lm_sensors
     
     zsh
     tmux
