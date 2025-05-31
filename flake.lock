@@ -99,11 +99,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748618795,
-        "narHash": "sha256-XrNoXAbUenzde4NKMsuCYdmW8t+2/Ks+vcFrlwRh4K4=",
+        "lastModified": 1748668774,
+        "narHash": "sha256-fYk/vk4ClmvHIgnGv/5GNRiDLtNCwXo9aLq36L/x+P4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "214f9bd3a693bbc8cc6d705d01421787e04eaacd",
+        "rev": "60e4624302d956fe94d3f7d96a560d14d70591b9",
         "type": "github"
       },
       "original": {
@@ -188,11 +188,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1748611559,
-        "narHash": "sha256-APux5CTQ0wAIYEoxyWNrwDBz/ugjvKM8obCLTB3mk9s=",
+        "lastModified": 1748645134,
+        "narHash": "sha256-nXTdGPXgI/aUsLSS0vjNqZfCYiWoG7TCp/dVfg2Bwsc=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "9190443d951c21ab24201d033accf90b4d172f46",
+        "rev": "af2fdb5d58f5d3017aafd78a8ddafb40f710e34b",
         "type": "github"
       },
       "original": {
@@ -389,6 +389,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1748460289,
+        "narHash": "sha256-7doLyJBzCllvqX4gszYtmZUToxKvMUrg45EUWaUYmBg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1748460289,
@@ -412,11 +428,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1748626741,
-        "narHash": "sha256-hDqQn2sDcJZm+PauBjifvCE9sW1yBHIjDncfzElQ024=",
+        "lastModified": 1748664611,
+        "narHash": "sha256-jgCbIiuKJ3M7LkFaK7AlpTkATLLqa2eqeqHTMsMgYoM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ed64d190749a0fae701cd0d1c123b023edb1e376",
+        "rev": "fa6d453c9203aa1623577ac81cb1e7b10604904d",
         "type": "github"
       },
       "original": {
@@ -453,6 +469,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
       }
     },

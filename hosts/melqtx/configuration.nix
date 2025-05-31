@@ -1,10 +1,15 @@
-# hosts/melqtx/configuration.nix
 { inputs, config, pkgs, lib, ... }:
+let
+  colors = import ../../home/shared/cols/horizon.nix {};
+in
 {
   imports = [
     ./hardware-configuration.nix
     ../../modules/networking.nix
-  ];
+    ../../modules/pkgs.nix
+    ../../modules/unstable.pkgs.nix 
+    ../../modules/desktop.nix
+    ../../modules/theming.nix    ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -15,16 +20,13 @@
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
   
-  # Enable the X11 windowing system and Wayland
   services.xserver.enable = true;
   
-  # Enable Hyprland
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
   
-  # XDG Desktop Portal
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -34,7 +36,6 @@
     config.common.default = "*";
   };
   
-  # Fonts
   fonts.packages = with pkgs; [
     font-awesome
     material-design-icons
@@ -43,11 +44,29 @@
     nerd-fonts.symbols-only
     dejavu_fonts
     liberation_ttf
+    bibata-cursors
   ];
+  
+  environment.variables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    HYPRCURSOR_SIZE = "24";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    GTK_THEME = "Adwaita:dark";
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+  };
+  
+  programs = {
+    dconf.enable = true;
+    zsh.enable = true;
+    zoxide.enable = true;
+    fzf.enable = true;
+  };
   
   services.vnstat.enable = true;
   
-  # Enable sound with PipeWire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -58,7 +77,6 @@
     jack.enable = true;
   };
   
-  # Define user account
   users.users.mel = {
     isNormalUser = true;
     description = "mel";
@@ -66,41 +84,21 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
   
-  # System packages
   environment.systemPackages = with pkgs; [
     vim
     git
     firefox
     wget
     curl
-    phinger-cursors
   ];
   
-  # System-wide cursor theme settings
-  environment.variables = {
-    XCURSOR_THEME = "phinger-cursors";
-    XCURSOR_SIZE = "24";
-  };
-  
-  # Programs
-  programs = {
-    # Enable dconf for GTK apps
-    dconf.enable = true;
-  };
-  programs.zsh.enable = true;
-  # Services
   services = {
-    # Enable dbus
     dbus.enable = true;
-    
-    # Enable gnome keyring
     gnome.gnome-keyring.enable = true;
   };
   
-  # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
   system.stateVersion = "24.05";
