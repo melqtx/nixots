@@ -13,9 +13,9 @@ in
     systemd.enable = true;
     
     extraConfig = ''
-      env = XCURSOR_THEME,phinger-cursors
+      env = XCURSOR_THEME,Bibata-Modern-Ice
       env = XCURSOR_SIZE,24
-      env = HYPRCURSOR_THEME,phinger-cursors
+      env = HYPRCURSOR_THEME,Bibata-Modern-Ice
       env = HYPRCURSOR_SIZE,24
       $mainMod = SUPER
       
@@ -425,9 +425,9 @@ in
       exec = swww img ${wall}
       exec-once = waybar
       exec-once = dunst
+      exec-once = hyprctl setcursor Bibata-Modern-Ice 24
       exec-once = wl-paste --type text --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
-      exec-once = hyprctl setcursor phinger-cursors 24
       
       # Window rules
       windowrule = float, title:^(Picture-in-Picture)$

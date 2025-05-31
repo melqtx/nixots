@@ -1,14 +1,10 @@
 { config, pkgs, lib, ... }:
 {
   services = {
-    greetd = {
+    displayManager.sddm = {
       enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-          user = "greeter";
-        };
-      };
+      wayland.enable = true;
+      theme = "catppuccin-sddm-corners";
     };
     
     # Audio
@@ -21,9 +17,6 @@
     };
     
     blueman.enable = true;
-    
-    networkmanager.enable = true;
-    
     vnstat.enable = true;
   };
   
@@ -35,6 +28,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    pam.services.sddm.enableGnomeKeyring = true;
   };
   
   programs = {
@@ -47,5 +41,16 @@
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
     };
+  };
+  
+  environment.systemPackages = with pkgs; [
+    (catppuccin-sddm-corners.override {
+    })
+  ];
+  
+  # Fix cursor theme system-wide
+  environment.sessionVariables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
   };
 }

@@ -62,7 +62,6 @@ in
     dconf.enable = true;
     zsh.enable = true;
     zoxide.enable = true;
-    fzf.enable = true;
   };
   
   services.vnstat.enable = true;

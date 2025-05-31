@@ -6,7 +6,6 @@
     syntaxHighlighting.enable = true;
     enableCompletion = true;
     shellAliases = {
-      # Existing aliases
       la = "run exa -l";
       ls = "ls --color=auto";
       v = "nvim";
