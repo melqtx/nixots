@@ -5,11 +5,11 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/networking.nix
-    ../../modules/pkgs.nix
-    ../../modules/unstable.pkgs.nix 
-    ../../modules/desktop.nix
-    ../../modules/theming.nix    ];
+    ./modules/networking.nix
+    ./modules/pkgs.nix
+    ./modules/unstable.pkgs.nix 
+    ./modules/desktop.nix
+    ./modules/theming.nix    ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

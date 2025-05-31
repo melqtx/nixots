@@ -33,7 +33,7 @@
           };
         }; 
         modules = [
-          ./hosts/melqtx/configuration.nix
+          ./configuration.nix
           
           # NUR overlay
           ({ config, pkgs, ... }: {
