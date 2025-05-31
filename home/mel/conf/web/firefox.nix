@@ -1,5 +1,15 @@
-{ colors, pkgs }:
-with colors;{
+{ 
+  config, 
+  pkgs, 
+  lib,
+  ... 
+}:
+
+let
+  colors = import ../../shared/cols/horizon.nix {};
+in
+
+with colors; {
   programs.firefox = {
     enable = true;
     profiles = {
@@ -22,7 +32,7 @@ with colors;{
         };
         search = {
           force = true;
-          default = "Gooogle";
+          default = "Google";
           order = [ "Google" ];
           engines = {
             "Nix Packages" = {
@@ -33,11 +43,11 @@ with colors;{
                   { name = "query"; value = "{searchTerms}"; }
                 ];
               }];
-              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
             "bing".metaData.hidden = true;
-            "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
+            "google".metaData.alias = "@g";
           };
         };
 
