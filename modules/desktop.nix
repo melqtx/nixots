@@ -20,9 +20,9 @@
     vnstat.enable = true;
   };
   
+    services.pulseaudio.enable = false; # We use PipeWire
   hardware = {
     bluetooth.enable = true;
-    pulseaudio.enable = false; # We use PipeWire
   };
   
   security = {

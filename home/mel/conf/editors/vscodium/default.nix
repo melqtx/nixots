@@ -4,16 +4,14 @@
   pkgs,
   ...
 }:
-
 let
   colors = import ../../../../shared/cols/horizon.nix {};
 in
-
 {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       dotenv.dotenv-vscode
       christian-kohler.path-intellisense
       formulahendry.auto-rename-tag
@@ -30,7 +28,7 @@ in
       oderwat.indent-rainbow
       naumovs.color-highlight
     ];
-    userSettings = with colors;{
+    profiles.default.userSettings = with colors;{
       "editor.fontFamily" = "'Iosevka Nerd Font', 'monospace', monospace";
       "editor.fontSize" = 16;
       "editor.formatOnSave" = true;

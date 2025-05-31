@@ -32,8 +32,8 @@ with colors; {
         };
         search = {
           force = true;
-          default = "Google";
-          order = [ "Google" ];
+          default = "google";
+          order = [ "google" ];
           engines = {
             "Nix Packages" = {
               urls = [{
@@ -51,7 +51,7 @@ with colors; {
           };
         };
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           re-enable-right-click
           don-t-fuck-with-paste

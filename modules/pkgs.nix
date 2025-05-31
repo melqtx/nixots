@@ -132,5 +132,44 @@
     tenacity
     lutris
     sox
+    
+    pamixer
+    networkmanager
+    networkmanagerapplet
+    bluez-tools
+    blueman
+    udiskie
+    kdePackages.sddm
+    libsForQt5.qt5.qtquickcontrols
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
+    waybar
+    wlogout
+    hyprpicker
+    satty
+    cliphist
+    hyprsunset
+    polkit_gnome
+    xdg-user-dirs
+    parallel
+    jq
+    imagemagick
+    libsForQt5.qt5.qtimageformats
+    ffmpegthumbnailer
+    libsForQt5.kde-cli-tools
+    noto-fonts-emoji
+    libsForQt5.qt5ct
+    qt6Packages.qt6ct
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5.qtwayland
+    qt6Packages.qtwayland
+    libsForQt5.dolphin
+    libsForQt5.ark
+    nwg-displays
+    eza
+    zsh-powerlevel10k
+    starship
+    fish
+    hypridle
   ];
 }
