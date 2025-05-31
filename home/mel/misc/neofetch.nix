@@ -6,7 +6,7 @@
 }:
 
 let
-  colors = import ../../shared/cols/horizon.nix {};
+  colors = import ../../shared/cols {};
 in
 {
   home.file.".config/neofetch/config.conf".text = ''

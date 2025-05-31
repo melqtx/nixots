@@ -10,7 +10,7 @@ let
   wall = "~/nixos-config/home/images/walls/${colors.name or "default"}.jpg";
   #TODO
   scrPath = "~/.config/hypr/scripts";
-  colors = import ../../../../shared/cols/horizon.nix {};
+  colors = import ../../../../shared/cols {};
 in
 {
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];

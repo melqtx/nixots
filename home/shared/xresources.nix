@@ -6,7 +6,7 @@
 }:
 
 let
-  colors = import ./cols/horizon.nix {};
+  colors = import ./cols {};
 in
 with colors; {
   xresources = {

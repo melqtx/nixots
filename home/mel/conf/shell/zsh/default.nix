@@ -7,7 +7,7 @@
 
 
 let
-  colors = import ../../../../shared/cols/horizon.nix {};
+  colors = import ../../../../shared/cols {};
 in
 {
   programs.zsh = {
