@@ -12,6 +12,7 @@
     swww
     rofi-wayland
     dunst
+    cool-retro-term
     
     zsh
     tmux
