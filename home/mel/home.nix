@@ -22,5 +22,6 @@
     ./conf/web/vesktop.nix
     ./conf/editors/vscodium
     ./misc/neofetch.nix
+    ./conf/shell/yazi/yazi.nix
   ];
 }
