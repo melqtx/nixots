@@ -1,5 +1,14 @@
-{ pkgs, colors, ... }:
+{ 
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+
+let
+  colors = import ../../../../shared/cols/horizon.nix {};
+in
 with colors; {
   programs.kitty = {
     enable = true;

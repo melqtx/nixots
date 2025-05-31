@@ -1,5 +1,14 @@
-{ config, pkgs, colors, ... }:
+{ 
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+
+let
+  colors = import ../../../../shared/cols/horizon.nix {};
+in
 {
   programs.rofi = {
     enable = true;

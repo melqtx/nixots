@@ -1,6 +1,13 @@
+{
+  config, 
+  lib,
+  pkgs,
+  ...
+}:
 
-{ config, colors }:
-
+let
+  colors = import ../../shared/cols/horizon.nix {};
+in
 {
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {

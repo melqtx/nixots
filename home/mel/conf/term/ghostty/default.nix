@@ -1,4 +1,14 @@
-{ pkgs, colors, ... }:
+{ 
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+
+let
+  colors = import ../../../../shared/cols/horizon.nix {};
+in
 with colors; {
   programs.ghostty = {
     enable = true;

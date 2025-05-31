@@ -1,4 +1,14 @@
-{ colors, pkgs }: with colors;{
+{ 
+  config,
+  lib,
+  pkgs,
+  ...
+}: 
+
+let
+  colors = import ../../../../shared/cols/horizon.nix {};
+in
+with colors;{
   services.dunst = {
     enable = true;
     settings = {

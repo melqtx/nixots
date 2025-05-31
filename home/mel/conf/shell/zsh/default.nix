@@ -1,4 +1,14 @@
-{ config, colors, pkgs, lib, ... }:
+{ 
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+
+let
+  colors = import ../../../../shared/cols/horizon.nix {};
+in
 {
   programs.zsh = {
     enable = true;

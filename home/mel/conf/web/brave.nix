@@ -2,7 +2,9 @@
   config,
   pkgs,
   lib,
-  }:
+  ...
+}:
+
 {
   programs.brave = {
     enable = true;
@@ -21,6 +23,5 @@
       { id = "bggfcpfjbdkhfhfmkjpbhnkhnpjjeomc"; } # Material icons for github
       { id = "cbghhgpcnddeihccjmnadmkaejncjndb"; } # Vencord web
     ];
-
   };
 }

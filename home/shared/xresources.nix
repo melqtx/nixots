@@ -1,5 +1,13 @@
-{ colors }:
+{ 
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
+let
+  colors = import ./cols/horizon.nix {};
+in
 with colors; {
   xresources = {
     path = ".Xresources";
