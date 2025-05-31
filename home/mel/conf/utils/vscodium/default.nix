@@ -5,7 +5,7 @@
   ...
 }:
 let
-  colors = import ../../../../shared/cols/ {};
+  colors = import ../../../../shared/cols {};
 in
 {
   programs.vscode = {

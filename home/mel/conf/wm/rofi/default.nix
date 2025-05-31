@@ -46,7 +46,7 @@ in
       foreground:                  #${colors.foreground};
       selected:                    #${colors.accent};
       active:                      #${colors.color2};
-      urgent:                      #${colors.color1};
+      urgent:                     #${colors.color1};
     }
 
     window {
@@ -54,10 +54,9 @@ in
       location:                    center;
       anchor:                      center;
       fullscreen:                  false;
-      width:                       1000px;
+      width:                       900px;
       x-offset:                    0px;
       y-offset:                    0px;
-
       enabled:                     true;
       border-radius:               15px;
       cursor:                      "default";

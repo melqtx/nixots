@@ -1,6 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  colors = import ../../home/shared/cols/ {};
+  colors = import ../../home/shared/cols {};
 in
 {
   imports = [
