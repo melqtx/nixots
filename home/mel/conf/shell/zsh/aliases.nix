@@ -60,7 +60,6 @@
     fi
   '';
   
-  in = "nix-env -iA nixpkgs.";
   un = "nix-env -e";
   up = "nixos-rebuild switch --flake /home/mel/nixos-config#melqtx";
   pl = "nix-env -q";
