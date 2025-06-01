@@ -45,7 +45,6 @@ in
         "assign" = "none";
       };
     };
-     starship = import ./starship.nix {inherit config pkgs; };
     enableCompletion = true;
     shellAliases = import ./aliases.nix { inherit config pkgs; };
     history = {
@@ -62,7 +61,7 @@ in
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#928374,bg=none,bold,underline";
     };
     
-    initContent = ''
+    initExtra = ''
       # History options
       setopt EXTENDED_HISTORY
       setopt INC_APPEND_HISTORY
@@ -108,6 +107,9 @@ in
           eval "$(fzf --zsh)"
       fi
       
+      # Initialize starship
+      eval "$(${pkgs.starship}/bin/starship init zsh)"
+      
       # Only source if the file exists
       if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
@@ -116,6 +118,8 @@ in
   };
   
   programs.starship.enable = true;
+  imports = [ ./starship.nix ];
+  
   home.packages = with pkgs; [
     fzf
     eza

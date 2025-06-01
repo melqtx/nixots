@@ -9,7 +9,9 @@ in
     ./modules/pkgs.nix
     ./modules/unstable.pkgs.nix 
     ./modules/desktop.nix
-    ./modules/theming.nix    ];
+    ./modules/theming.nix
+    ./modules/ssh.nix
+  ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,7 +48,6 @@ in
     liberation_ttf
     bibata-cursors
   ];
-  
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
