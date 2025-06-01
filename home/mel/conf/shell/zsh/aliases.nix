@@ -2,7 +2,6 @@
 {
   la = "run exa -l";
   ls = "ls --color=auto";
-  v = "nvim";
   nf = "run neofetch";
   sa = "pkill ags ; ags & disown";
   suda = "sudo -E -s";
@@ -13,11 +12,6 @@
   da = "date \"+%Y-%m-%d %A %T %Z\"";
   mv = "mv -i";
   rm = "trash -v";
-  vim = "nvim";
-  iv = "nvim";
-  ivm = "nvim";
-  vi = "nvim";
-  vis = "nvim \"+set si\"";
   mkdir = "mkdir -p";
   
   ps = "ps auxf";
