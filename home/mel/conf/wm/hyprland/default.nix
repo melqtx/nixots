@@ -430,6 +430,7 @@ in
       # Startup commands
       exec-once = swww init
       exec = swww img ${wall}
+      exec-once = hyprsunset -t 5000k
       exec-once = waybar
       exec-once = dunst
       exec-once = hyprctl setcursor Bibata-Modern-Ice 24
