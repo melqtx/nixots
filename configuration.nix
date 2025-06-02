@@ -12,6 +12,7 @@ in
     ./modules/theming.nix
     ./modules/samba.nix
     ./modules/ssh.nix
+    ./modules/jellyfin/main.nix
   ];
   
   boot.loader.systemd-boot.enable = true;

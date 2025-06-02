@@ -27,6 +27,7 @@
     ntfy-sh
     inotify-tools
     rsync
+    jellyfin
 
     obs-studio
     flameshot
