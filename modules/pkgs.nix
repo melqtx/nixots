@@ -24,6 +24,9 @@
 
     #server thingy
     samba
+    ntfy-sh
+    inotify-tools
+    rsync
 
     obs-studio
     flameshot

@@ -61,7 +61,7 @@ in
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#928374,bg=none,bold,underline";
     };
     
-    initExtra = ''
+    initContent = ''
       # History options
       setopt EXTENDED_HISTORY
       setopt INC_APPEND_HISTORY
