@@ -19,8 +19,12 @@
     tmux
     kitty
     ghostty
-    
     obsidian
+    
+
+    #server thingy
+    samba
+
     obs-studio
     flameshot
     peaclock

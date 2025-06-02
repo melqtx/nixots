@@ -10,6 +10,7 @@ in
     ./modules/unstable.pkgs.nix 
     ./modules/desktop.nix
     ./modules/theming.nix
+    ./modules/samba.nix
     ./modules/ssh.nix
   ];
   
