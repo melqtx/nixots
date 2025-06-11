@@ -1,3 +1,4 @@
+```bash
 .
 ├── configuration.nix
 ├── flake.lock
@@ -80,3 +81,4 @@
 │   └── unstable.pkgs.nix
 ├── overlays
 │   └── default.nix
+```
