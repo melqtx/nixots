@@ -1,4 +1,4 @@
-`
+.
 ├── configuration.nix
 ├── flake.lock
 ├── flake.nix
@@ -80,4 +80,3 @@
 │   └── unstable.pkgs.nix
 ├── overlays
 │   └── default.nix
-`
