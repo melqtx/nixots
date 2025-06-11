@@ -82,3 +82,5 @@
 ├── overlays
 │   └── default.nix
 ```
+
+gotta thank namishh and safri.
